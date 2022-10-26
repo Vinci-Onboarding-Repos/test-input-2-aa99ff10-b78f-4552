@@ -374,6 +374,11 @@ async function addxptopath() {
         userData: JSON.parse(window.localStorage.getItem('user')).id,
         add: true,
     });
+    axios.post(BASE_URL + '/changeuseronboardingcompletion', {
+        projectId: projectId,
+        API_KEY: 'VINCI_DEV_6E577',
+        userData: JSON.parse(window.localStorage.getItem('user')).id,
+    });
 }
 
 logPageView();
