@@ -37,8 +37,11 @@
         if(document.querySelector("#twitter") !== null){
             document.querySelector("#twitter").addEventListener("click", openPopupT);
         }
-        if(document.querySelector("#complete") !== null){
+        if(document.querySelector("#completeT") !== null){
             addxptopath();
+        }
+        if(document.querySelector("#Complete") !== null){
+            completeClick();
         }
         
     });
@@ -91,6 +94,6 @@
         <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
         <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
         <script type="text/javascript" src="js/index.js"></script> 
-        <div id="template" class="root base"><img alt="background" style="background-image:url(https://firebasestorage.googleapis.com/v0/b/vinci-dev-6e577.appspot.com/o/projectData%2Flogo.png?alt=media&amp;token=51677854-3e82-45a6-b217-1e32da3dce82)" src="https://firebasestorage.googleapis.com/v0/b/vinci-dev-6e577.appspot.com/o/projectData%2Flogo.png?alt=media&amp;token=51677854-3e82-45a6-b217-1e32da3dce82" class="BrandLogo image"/><div id="complete" class="rightCol rightColP"><div class="rightCol1"><div class="text1 title">Example Title</div><div class="text2 subtitle">Example Subtitle</div><div class="parag paragP">Example Text</div></div><a href="screen-33a6fc71-824e-407f-b27c-128fbedbb85b"><button style="background-color:#0d1121" class="button buttonP">Next</button></a></div></div>
+        <div id="template" class="root base"><img alt="background" style="background-image:url(https://firebasestorage.googleapis.com/v0/b/vinci-dev-6e577.appspot.com/o/projectData%2Flogo.png?alt=media&amp;token=51677854-3e82-45a6-b217-1e32da3dce82)" src="https://firebasestorage.googleapis.com/v0/b/vinci-dev-6e577.appspot.com/o/projectData%2Flogo.png?alt=media&amp;token=51677854-3e82-45a6-b217-1e32da3dce82" class="BrandLogo image"/><div id="complete" class="rightCol rightColP"><div class="rightCol1"><div class="text1 title">Example Title</div><div class="text2 subtitle">Example Subtitle</div><div class="parag paragP">Example Text</div></div><a id="screen-33a6fc71-824e-407f-b27c-128fbedbb85b" href="screen-33a6fc71-824e-407f-b27c-128fbedbb85b"><button style="background-color:#0d1121" class="button buttonP">Next</button></a></div></div>
     </body>
 </html>
