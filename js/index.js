@@ -381,6 +381,10 @@ async function addxptopath() {
     });
 }
 
+async function completeClick(){
+    alert("Hello! I am an alert box!!");
+}
+
 logPageView();
 init();
 
