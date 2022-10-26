@@ -382,6 +382,8 @@ async function addxptopath() {
 }
 
 async function completeClick(){
+    toggleConfetti();
+
     alert("Hello! I am an alert box!!");
 }
 
