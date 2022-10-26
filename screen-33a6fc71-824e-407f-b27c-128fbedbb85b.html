@@ -41,7 +41,7 @@
             addxptopath();
         }
         if(document.querySelector("#Complete") !== null){
-            completeClick();
+            document.querySelector("#Complete").addEventListener("click", completeClick);
         }
         
     });
