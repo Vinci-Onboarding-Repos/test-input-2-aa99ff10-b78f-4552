@@ -1,8 +1,8 @@
 
 const VINCI_ENV = sessionStorage.getItem('vinciEnv');
-const BASE_URL = VINCI_ENV === 'dev' ? 'https://us-central1-vinci-dev-6e577.cloudfunctions.net/publicApi/public' :
+const BASE_URL = VINCI_ENV !== 'dev' ? 'https://us-central1-vinci-dev-6e577.cloudfunctions.net/publicApi/public' :
     'https://us-central1-vinci-prod.cloudfunctions.net/publicApi/public';
-const BASE_API_URL = VINCI_ENV === 'dev' ? 'https://us-central1-vinci-dev-6e577.cloudfunctions.net/api' :
+const BASE_API_URL = VINCI_ENV !== 'dev' ? 'https://us-central1-vinci-dev-6e577.cloudfunctions.net/api' :
     'https://us-central1-vinci-prod.cloudfunctions.net/api';
 const PROJECT_ID = ''
 const Web3Modal = window.Web3Modal.default;
