@@ -50,7 +50,7 @@ const storeUserWallet = async (selectedWallet) => {
         userData = JSON.parse(window.localStorage.getItem('user'));
     } else {
         const countryR = await country();
-        const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: countryR.country, expiry: new Date().getTime()+600000 };
+        const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: countryR.country, expiry: new Date().getTime() + 600000 };
         console.log(userData)
         window.localStorage.setItem('user', JSON.stringify(userData));
     }
@@ -84,7 +84,7 @@ async function checkUserInput(event) {
         const countryR = await country();
         allIds.country = countryR.country;
         allIds.id = 'onboarding-user-' + crypto.randomUUID();
-        allIds.expiry = new Date().getTime()+600000 };
+        allIds.expiry = new Date().getTime() + 600000;
         window.localStorage.setItem('user', JSON.stringify(allIds));
         let userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
@@ -97,7 +97,7 @@ async function checkUserInput(event) {
     }
 
     const data = document.querySelector("#inputNext");
-    if(data.dataset.href.includes("Complete")){
+    if (data.dataset.href.includes("Complete")) {
         window.close();
     }
     location.href = data.dataset.href;
@@ -116,7 +116,7 @@ async function addUserDecision(event) {
         user.country = countryR.country;
         user.id = 'onboarding-user-' + crypto.randomUUID();
         user.type = event.target.id;
-        user.expiry = new Date().getTime()+600000 };
+        user.expiry = new Date().getTime() + 600000;
         window.localStorage.setItem('user', JSON.stringify(user));
         let userData = JSON.parse(window.localStorage.getItem('user'));
     }
@@ -126,7 +126,7 @@ async function addUserDecision(event) {
 
 function openPopupD() {
     var allIds = {};
-    var popup = window.open(BASE_API_URL + '/routes/discord/auth?original='+window.location.href, '', "width=400, height=400");
+    var popup = window.open(BASE_API_URL + '/routes/discord/auth?original=' + window.location.href, '', "width=400, height=400");
 
     var popupTick = setInterval(function () {
         if (popup.location.href !== undefined) {
@@ -140,7 +140,7 @@ function openPopupD() {
                 }
                 else {
                     allIds.discordU = params;
-                    allIds.expiry = new Date().getTime()+600000 };
+                    allIds.expiry = new Date().getTime() + 600000;
                     allIds.id = 'onboarding-user-' + crypto.randomUUID();
                     window.localStorage.setItem('user', JSON.stringify(allIds));
                 }
@@ -150,7 +150,7 @@ function openPopupD() {
                 popup.close();
                 clearInterval(popupTick);
             }
-        }else{
+        } else {
             popup.close();
             clearInterval(popupTick);
         }
@@ -161,13 +161,13 @@ function openPopupD() {
 
 function openPopupT() {
     var allIds = {};
-    var popup = window.open(BASE_API_URL + '/routes/twitter/auth/twitter1?original='+window.location.href, '', "width=400, height=400");
+    var popup = window.open(BASE_API_URL + '/routes/twitter/auth/twitter1?original=' + window.location.href, '', "width=400, height=400");
 
     var popupTick = setInterval(function () {
         if (popup.location.href !== undefined) {
             if (popup.location.href.indexOf('twitterU') > -1) {
                 const params = popup.location.href.split("twitterU=")[1]
-                 if (window.localStorage.getItem('user') !== null && new Date().getTime() < window.localStorage.getItem('user').expiry) {
+                if (window.localStorage.getItem('user') !== null && new Date().getTime() < window.localStorage.getItem('user').expiry) {
                     allIds.twitterU = params;
                     let userData = JSON.parse(window.localStorage.getItem('user'));
                     let merged = { ...userData, ...allIds };
@@ -175,7 +175,7 @@ function openPopupT() {
                 }
                 else {
                     allIds.twitterU = params;
-                    allIds.expiry = new Date().getTime()+600000 };
+                    allIds.expiry = new Date().getTime() + 600000;
                     allIds.id = 'onboarding-user-' + crypto.randomUUID();
                     window.localStorage.setItem('user', JSON.stringify(allIds));
                 }
@@ -185,7 +185,7 @@ function openPopupT() {
                 popup.close();
                 clearInterval(popupTick);
             }
-        }else{
+        } else {
             popup.close();
             clearInterval(popupTick);
         }
@@ -257,7 +257,7 @@ async function onSolConnect(event) {
             connectButton.innerHTML = window.solana.publicKey;
             status.innerHTML = provider.isConnected.toString();
             const data = document.querySelector("#sol");
-            if(data.dataset.address === ''){
+            if (data.dataset.address === '') {
                 location.href = data.dataset.href;
             }
             const res = check_user_NFT(resp.publicKey.toString(), data.dataset.address, data.dataset.numberofneededtokens, data.dataset.chain)
@@ -277,7 +277,7 @@ async function fetchAccountData(event) {
     const accounts = await web3.eth.getAccounts();
     selectedAccount = accounts[0];
     const data = document.querySelector("#eth");
-    if(data.dataset.address === ''){
+    if (data.dataset.address === '') {
         location.href = data.dataset.href;
     }
     const res = check_user_NFT(selectedAccount, data.dataset.address, data.dataset.numberofneededtokens, data.dataset.chain)
@@ -293,12 +293,12 @@ async function check_user_NFT(user_address, token_address, amount, network_name)
     const data = response.data.assets;
     // check if user has required tokens
     for (var i = 0; i < data.length; i++) {
-      if (data[i].asset_contract.address === token_address) {
-        return true;
-      }
+        if (data[i].asset_contract.address === token_address) {
+            return true;
+        }
     }
     if (network_name === "mainnet" || network_name === "ethereum") {
-      network_name = "eth";
+        network_name = "eth";
     } else {
     }
 
@@ -306,45 +306,45 @@ async function check_user_NFT(user_address, token_address, amount, network_name)
     const moralisURL = 'https://deep-index.moralis.io/api/v2/' + user_address + '/erc20?chain=' + network_name + '&token_address=' + token_address;
     const result = await axios.get(
         moralisURL,
-      {
-        headers: {
-          "X-API-Key": "test",
-        },
-      }
+        {
+            headers: {
+                "X-API-Key": "test",
+            },
+        }
     );
     if (result.data.length > 0) {
-      for (var x = 0; x < result.data.length; x++) {
-        if (result.data[x].token_address === token_address && (parseInt(result.data[x].balance) / (10 ^ 18)) >= amount) {
-          return true;
+        for (var x = 0; x < result.data.length; x++) {
+            if (result.data[x].token_address === token_address && (parseInt(result.data[x].balance) / (10 ^ 18)) >= amount) {
+                return true;
+            }
         }
-      }
     };
 
     // if network is solana then use solana web3 to fetch user balance of a certain token
     if (network_name === "solana") {
-      const solana = require("@solana/web3.js");
-      const connection = new solana.Connection(solana.clusterApiUrl("devnet"));
-      //const token = new solana.PublicKey(token_address);
-      const info = await connection.getTokenAccountBalance(
-        new solana.PublicKey(user)
-      );
-      if (info.value.uiAmount >= amount) {
-        return true;
-      }
+        const solana = require("@solana/web3.js");
+        const connection = new solana.Connection(solana.clusterApiUrl("devnet"));
+        //const token = new solana.PublicKey(token_address);
+        const info = await connection.getTokenAccountBalance(
+            new solana.PublicKey(user)
+        );
+        if (info.value.uiAmount >= amount) {
+            return true;
+        }
     } else {
-      console.log("INVALID INPUT" + result.data.result);
-      return false;
+        console.log("INVALID INPUT" + result.data.result);
+        return false;
     }
 
-  }
+}
 
-async function addxptopath(){
+async function addxptopath() {
     event.preventDefault()
     var projectId = window.location.pathname.split('/')[1];
     var url = window.location.href;
     if (url.includes("https://")) {
         url = window.location.href.split("https://")[1]
-    }else{
+    } else {
         if (url.includes("http://")) {
             url = window.location.href.split("http://")[1]
         }
@@ -357,7 +357,7 @@ async function addxptopath(){
         "index" : pathList[pathList.length - 1];
 
     const data = document.querySelector("#complete");
-    
+
     if (window.localStorage.getItem('user') === null) {
         var allIds = {};
         allIds.id = 'onboarding-user-' + crypto.randomUUID();
