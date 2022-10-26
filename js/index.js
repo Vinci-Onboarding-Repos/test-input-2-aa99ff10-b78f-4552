@@ -42,16 +42,15 @@ const logPageView = async () => {
 
 const storeUserWallet = async (selectedWallet) => {
 
-    if (window.localStorage.getItem('user') !== null) {
+    if (window.localStorage.getItem('user') !== null && new Date().getTime() > window.localStorage.getItem('user').expiry) {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         console.log(userData)
         userData.wallet = selectedWallet;
         window.localStorage.setItem('user', JSON.stringify(userData));
         userData = JSON.parse(window.localStorage.getItem('user'));
-
     } else {
         const countryR = await country();
-        const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: countryR.country };
+        const userData = { wallet: selectedWallet, id: 'onboarding-user-' + crypto.randomUUID(), country: countryR.country, expiry: new Date().getTime()+600000 };
         console.log(userData)
         window.localStorage.setItem('user', JSON.stringify(userData));
     }
@@ -70,7 +69,7 @@ async function checkUserInput(event) {
         }
     }
 
-    if (window.localStorage.getItem('user') !== null) {
+    if (window.localStorage.getItem('user') !== null && new Date().getTime() > window.localStorage.getItem('user').expiry) {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         let merged = { ...userData, ...allIds };
         window.localStorage.setItem('user', JSON.stringify(merged));
@@ -85,6 +84,7 @@ async function checkUserInput(event) {
         const countryR = await country();
         allIds.country = countryR.country;
         allIds.id = 'onboarding-user-' + crypto.randomUUID();
+        allIds.expiry = new Date().getTime()+600000 };
         window.localStorage.setItem('user', JSON.stringify(allIds));
         let userData = JSON.parse(window.localStorage.getItem('user'));
         var pathArray = window.location.pathname.split('/');
@@ -105,7 +105,7 @@ async function checkUserInput(event) {
 
 async function addUserDecision(event) {
     event.preventDefault();
-    if (window.localStorage.getItem('user') !== null) {
+    if (window.localStorage.getItem('user') !== null && new Date().getTime() > window.localStorage.getItem('user').expiry) {
         let userData = JSON.parse(window.localStorage.getItem('user'));
         let merged = { ...userData, ...{ type: event.target.id } };
         window.localStorage.setItem('user', JSON.stringify(merged));
@@ -116,6 +116,7 @@ async function addUserDecision(event) {
         user.country = countryR.country;
         user.id = 'onboarding-user-' + crypto.randomUUID();
         user.type = event.target.id;
+        allIds.expiry = new Date().getTime()+600000 };
         window.localStorage.setItem('user', JSON.stringify(user));
         let userData = JSON.parse(window.localStorage.getItem('user'));
     }
@@ -131,7 +132,7 @@ function openPopupD() {
         if (popup.location.href !== undefined) {
             if (popup.location.href.indexOf('discordU') > -1) {
                 const params = popup.location.href.split("discordU=")[1]
-                if (window.localStorage.getItem('user') !== null) {
+                if (window.localStorage.getItem('user') !== null && new Date().getTime() > window.localStorage.getItem('user').expiry) {
                     allIds.discordU = params;
                     let userData = JSON.parse(window.localStorage.getItem('user'));
                     let merged = { ...userData, ...allIds };
@@ -139,6 +140,7 @@ function openPopupD() {
                 }
                 else {
                     allIds.discordU = params;
+                    allIds.expiry = new Date().getTime()+600000 };
                     allIds.id = 'onboarding-user-' + crypto.randomUUID();
                     window.localStorage.setItem('user', JSON.stringify(allIds));
                 }
@@ -165,7 +167,7 @@ function openPopupT() {
         if (popup.location.href !== undefined) {
             if (popup.location.href.indexOf('twitterU') > -1) {
                 const params = popup.location.href.split("twitterU=")[1]
-                if (window.localStorage.getItem('user') !== null) {
+                 if (window.localStorage.getItem('user') !== null && new Date().getTime() > window.localStorage.getItem('user').expiry) {
                     allIds.twitterU = params;
                     let userData = JSON.parse(window.localStorage.getItem('user'));
                     let merged = { ...userData, ...allIds };
@@ -173,6 +175,7 @@ function openPopupT() {
                 }
                 else {
                     allIds.twitterU = params;
+                    allIds.expiry = new Date().getTime()+600000 };
                     allIds.id = 'onboarding-user-' + crypto.randomUUID();
                     window.localStorage.setItem('user', JSON.stringify(allIds));
                 }
