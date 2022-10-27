@@ -8,6 +8,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
   <script src="confetti.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
   <script>
 
     window.addEventListener('load', async () => {
@@ -52,6 +53,12 @@
       function myFunction(event) {
         event.preventDefault();
         console.log("ola");
+      const jsConfetti = new JSConfetti()
+
+      jsConfetti.addConfetti()
+        const canvas = document.getElementById('completeT')
+
+const jsConfetti = new JSConfetti({ canvas })
         toggleConfetti();
       }
     </script>
