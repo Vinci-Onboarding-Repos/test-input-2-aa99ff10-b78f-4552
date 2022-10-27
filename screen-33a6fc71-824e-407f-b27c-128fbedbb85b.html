@@ -41,12 +41,18 @@
             addxptopath();
         }
         if(document.querySelector("#Complete") !== null){
-            document.querySelector("#Complete").addEventListener("click", toggleConfetti());
+            document.querySelector("#Complete").addEventListener("click", myFunction);
         }
         
     });
     </script>
     
+    <script>
+      function myFunction(event) {
+        event.preventDefault();
+        console.log("ola");
+      }
+    </script>
     <script>
     window.addEventListener('load', async () => {
         if(document.getElementById('inputNext')){
