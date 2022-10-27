@@ -43,7 +43,7 @@
             addxptopath();
         }
         if(document.querySelector("#Complete") !== null){
-            document.querySelector("#Complete").addEventListener("click", myFunction);
+            document.querySelector("#Complete").addEventListener("click", confettiComplete);
         }
         
     });
@@ -52,11 +52,9 @@
     <script>
       function myFunction(event) {
         event.preventDefault();
-        console.log("ola");
-      const jsConfetti = new JSConfetti()
-
-      jsConfetti.addConfetti()
-        toggleConfetti();
+        const jsConfetti = new JSConfetti();
+        jsConfetti.addConfetti();
+        alert("Congrats! You have completed the Onboarding! You can now close this page.");
       }
     </script>
     <script>
