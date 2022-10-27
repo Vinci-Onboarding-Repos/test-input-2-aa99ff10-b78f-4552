@@ -381,7 +381,8 @@ async function addxptopath() {
     });
 }
 
-async function completeClick(){
+async function completeClick(event){
+    event.preventDefault();
     toggleConfetti();
 
     alert("Hello! I am an alert box!!");
